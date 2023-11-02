@@ -1,0 +1,17 @@
+<h2>Places visited</h2>
+
+{% if visited %}
+
+<ul>
+    {% for place in visited %}
+        <li>{{ place.name }}</li>
+    {% endfor %}
+</ul>
+
+{% else %}
+
+<p>No places visited</p>
+
+{% endif %}
+
+<a href="{% url 'place_list' %}">Wishlist</a>
