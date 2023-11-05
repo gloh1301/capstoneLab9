@@ -1,5 +1,5 @@
 from django.contrib import admin
 from .models import Place
 
-# Register your models here.
+# sets up the admin version of the site
 admin.site.register(Place)

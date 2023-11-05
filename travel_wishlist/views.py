@@ -5,7 +5,7 @@ from .forms import NewPlaceForm
 
 def place_list(request):
     if request.method == 'POST':
-        # create new place
+        # creates new place
         form = NewPlaceForm(request.POST)  # creating a form from data in the request
         place = form.save()  # create a model object from form
         if form.is_valid():  # validation against database constraints
@@ -28,6 +28,7 @@ def place_was_visited(request, place_pk):
         place = get_object_or_404(Place, pk=place_pk)
         place.visited = True
         place.save()
+    # redirects back to place_list
     return redirect('place_list')
 
 
