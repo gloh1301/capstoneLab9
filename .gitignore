@@ -3,3 +3,7 @@ __pycache__
 .vscode
 .idea
 db.sqlite3
+cloud-sql-proxy.exe
+travel-credentials.json
+app.yaml
+cron.yaml

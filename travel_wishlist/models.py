@@ -4,6 +4,14 @@ from django.core.files.storage import default_storage
 
 
 # model for how the data will be stored
+
+class CatFact(models.Model):
+    fact = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.fact
+
+
 class Place(models.Model):
     user = models.ForeignKey('auth.User', null=False, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
@@ -19,14 +27,15 @@ class Place(models.Model):
                 self.delete_photo(old_place.photo)
         super().save(*args, **kwargs)
 
-    def delete_photo(self, photo):
-        if default_storage.exists(photo.name):
-            default_storage.delete(photo.name)
-
     def delete(self, *args, **kwargs):
         if self.photo:
             self.delete_photo(self.photo)
         super().delete(*args, **kwargs)
+
+    def delete_photo(self, photo):
+        if default_storage.exists(photo.name):
+            default_storage.delete(photo.name)
+
     def __str__(self):
         photo_str = self.photo.url if self.photo else 'no photo'
         notes_str = self.notes[100:] if self.notes else 'no notes'
